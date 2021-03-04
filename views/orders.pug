@@ -1,0 +1,29 @@
+extends layout
+block container
+    h2 Мои заказы
+    if orders.length
+        each db in orders
+            .row
+                .col.s6.offset-s3
+                    .card
+                        .card-content
+                            span.card-title 
+                                | Заказ 
+                                small= db._id
+                            p.date= db.date
+                            p
+                                strong= db.user.userId.name
+                                |   (
+                                span= db.user.userId.email
+                                | )
+                            ol
+                                each ses in db.courses
+                                    li= ses.course.title
+                                        |   (x
+                                        strong= ses.count
+                                        | )
+                            hr 
+                            span.price= db.price
+    else
+        p Заказов пока нет
+        

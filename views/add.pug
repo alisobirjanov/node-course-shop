@@ -1,0 +1,20 @@
+extends layout
+block container
+    h2 Добавить новый курс
+    form(action='/add' method='POST' novalidate)
+        p#qwerty= error
+        .input-field
+            input#title.validate(name='title' type='text' required='')
+            label(for='title') Названия курса
+            span.helper-text(data-error='Введите цену')
+        .input-field
+            input#price.validate(name='price' type='number' required='')
+            label(for='price') Цена курса
+            span.helper-text(data-error='Введите цену')
+        .input-field
+            input#img.validate(name='img' type='file' required='')
+            //- label(for='img')
+            span.helper-text(data-error='Введите url картинки')
+
+        input(type="hidden" name="_csrf" value= csrf)
+        button(type="submit").btn.btn-primary Добавить курс

@@ -1,0 +1,59 @@
+extends layout
+block container
+    .row 
+        .col.s12
+            ul.tabs 
+                li.col.tab.s6
+                    a(href="#login").active Войти
+                li.col.tab.s6
+                    a(href="#register") Регистрация
+        div(id="login").col.s6.offset-s3
+
+            p#qwerty= loginError
+        
+            h2 Войти в магазин
+            form(action='/auth/login' method='POST')
+
+                    .input-field
+                        input#email.validate(name='email' type='email' required)
+                        label(for='email') Email
+                        span.helper-text(data-error='Введите email')
+
+                    .input-field
+                        input#password.validate(name='password' type='password' required='')
+                        label(for='password') Пароль
+                        span.helper-text(data-error='Введите пароль')
+
+                    input(type="hidden" name="_csrf" value= csrf)
+
+                    button(type="submit").btn.btn-primary Войти
+
+        div(id="register").col.s6.offset-s3
+
+            p#qwerty2= registerError
+
+            h2 Создать аккаунт
+            form(action='/auth/register' method='POST' novalidate)
+                .input-field
+                    input#name.validate(name='name' type='text' required)
+                    label(for='name') Ваше имя
+                    span.helper-text(data-error='Введите имя')
+
+                .input-field
+                    input#remail.validate(name='email' type='email' required)
+                    label(for='remail') Email
+                    span.helper-text(data-error='Введите email')
+
+                .input-field
+                    input#rpassword.validate(name='password' type='password' required='')
+                    label(for='rpassword') Пароль
+                    span.helper-text(data-error='Введите пароль')
+
+                .input-field
+                    input#confirm.validate(name='repeat' type='password' required='')
+                    label(for='confirm') Введите пароль еще раз 
+                    span.helper-text(data-error='Введите пароль')
+
+                input(type="hidden" name="_csrf" value= csrf)
+
+                button(type="submit").btn.btn-primary Зарегистрироваться

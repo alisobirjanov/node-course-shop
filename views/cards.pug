@@ -1,0 +1,13 @@
+extends layout
+block container
+
+
+    .row
+    .col.s12.m12
+        .card.row
+            .card-image.col.s6
+                img(src='/img/' + course.img).cards-image
+            .card-content.col.s6
+                span.card-title= course.title
+                p.price= course.price
+                

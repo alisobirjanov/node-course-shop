@@ -1,0 +1,30 @@
+{
+  "name": "project-two",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js "
+  },
+  "author": "Ali",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.4.1",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.10.0",
+    "helmet": "^4.4.1",
+    "mongoose": "^5.11.15",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.5.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "pug": "^3.0.0",
+    "uuid": "^8.3.2"
+  }
+}

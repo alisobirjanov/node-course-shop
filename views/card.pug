@@ -1,0 +1,27 @@
+extends layout
+block container
+    h2 Корзина
+
+    .korzina
+        if course.length
+            table
+                thead
+                    tr
+                        th Нзвание
+                        th Количество
+                        th Действия
+                tbody
+                    each db in course
+                        tr
+                            th= db.title
+                            th= db.count
+                            th
+                                button.waves-effect.waves-light.btn-small.js-remove(data-id= db.id data-csrf= csrf) Удалить
+            p
+                strong Цена:
+                span.price= price
+            form(action='/orders' method='POST')
+                input(type="hidden" name="_csrf" value= csrf)
+                button.btn(type='submit') Сделать заказ
+        else
+            p Корзина пуста

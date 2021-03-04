@@ -1,0 +1,27 @@
+extends layout
+block container
+    h2 Курсы
+    if courses.length
+        .row
+            each db in courses
+                .col.s12.m4
+                    .card
+                        .card-image
+                            img(src='/img/'+ db.img)
+                            if isAuth
+                                form(action="/card/add" method="POST")
+                                    input(type="hidden" name="id" value= db._id)
+                                    
+                                    input(type="hidden" name="_csrf" value= csrf)
+                                    button(class="btn-floating halfway-fab waves-effect waves-light red" type="submit")
+                                        i(class="material-icons") add_shopping_cart
+                        .card-content
+                            span.card-title= db.title
+                            p.price= db.price
+                        .card-action
+                            a( href="/courses/"+db._id) Открыть курс
+                            if isAuth 
+                                a(href="/courses/"+db._id+"/edit?allow=true") 
+                                    i(class="material-icons") edit
+    else 
+        p Poka Kursov netu

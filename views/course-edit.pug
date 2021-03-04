@@ -1,0 +1,30 @@
+extends layout
+block container
+
+    h2 Редоктировать курс      
+        i= course.title
+
+
+    form(action='/courses/edit' method='POST')
+        .input-field
+            input#title.validate(name='title' type='text' required='' value= course.title)
+            label(for='title') Названия курса
+            span.helper-text(data-error='Введите цену')
+        .input-field
+            input#price.validate(name='price' type='number' required='' value= course.price)
+            label(for='price') Цена курса
+            span.helper-text(data-error='Введите цену')
+        .input-field
+            input#img.validate(name='img' type='file' required='' value= course.img)
+            //- label(for='img') URL картинки
+            span.helper-text(data-error='Введите url картинки')
+        input(type='hidden' name='id' value= course._id)
+
+        input(type="hidden" name="_csrf" value= csrf)
+        button.btn.btn-primary(type='submit') Редоктировать
+
+    form(method='POST' action='/courses/remove')
+        input(type='hidden' name='id' value= course._id )
+
+        input(type="hidden" name="_csrf" value= csrf)
+        button.btn.red(type='submit') Удалить курс
