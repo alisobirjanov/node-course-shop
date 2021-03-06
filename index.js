@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require('path')
-// const csurf = require("csurf");
+const csurf = require("csurf");
 const helmet = require('helmet')
 const compression = require('compression')
 const flash = require("connect-flash");
@@ -65,7 +65,7 @@ app.use(session({
   store
 }))
 
-// app.use(csurf());
+app.use(csurf());
 app.use(flash());
 app.use(helmet())
 app.use(compression());

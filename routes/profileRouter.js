@@ -14,9 +14,7 @@ router.get('/', auth, async (req, res) => {
 
 router.post("/", auth, uploads, async (req, res) => {
   try {
-      console.log(req.file)
     const user = await User.findById(req.user._id);
-    console.log(req.body);
     const toChange = {
       name: req.body.title,
     };
