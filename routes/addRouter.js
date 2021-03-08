@@ -1,5 +1,4 @@
 const express = require("express");
-// const Course = require('../models/course')
 const Course = require("../models/courseModel");
 const auth = require('../middleware/auth')
 const { validationResult } = require("express-validator");
@@ -24,7 +23,6 @@ router.post('/', auth, courseValidators,  async (req, res) => {
         error: errors.array()[0].msg,
       });
     }
-    // const {title, price, img} = req.body
     const course = new Course({
       title: req.body.title,
       price: req.body.price,

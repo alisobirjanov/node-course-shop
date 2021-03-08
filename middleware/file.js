@@ -35,22 +35,23 @@ const storage = multer.diskStorage({
     cb(null, "uploads");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + file.originalname);
   },
 });
+
+
+const allowTypes = ["image/png", "image/jpg", "image/jpeg"];
 
 const uploads = multer({
   storage,
   limits: { fieldSize: 2 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const extname = path.extname(file.originalname);
-    if (extname !== ".jpg" && extname !== ".png" && extname !== ".jpeg") {
-      const err = new Error("xatolik bor");
-      err.code = 404;
-      return cb(err);
+    if (allowTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(null, false);
     }
-    cb(null, true);
-  },
+},
   preserverPath: true,
 });
 

@@ -1,6 +1,5 @@
 const express = require("express");
 const Course = require("../models/courseModel");
-// const Card = require('../models/card')
 const auth = require("../middleware/auth");
 const router = express.Router();
 
@@ -21,19 +20,15 @@ function computePrice(courses) {
 }
 
 router.post("/add", auth, async (req, res) => {
-  //  const course = await Course.getById(req.body.id)
   const course = await Course.findById(req.body.id);
   await req.user.addToCart(course);
   res.redirect("/card");
 });
 
 router.get("/", auth, async (req, res) => {
-  // const card = await Card.fetch()
-
   const user = await req.user.populate("cart.items.courseId").execPopulate();
 
   const courses = mapCartItem(user.cart);
-
 
   res.render("card", {
     title: "Корзина",
@@ -44,7 +39,6 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.delete("/remove/:id", auth, async (req, res) => {
-//   const card = await Card.remove(req.params.id);
 await req.user.removeFromCart(req.params.id)
 
 const user = await req.user.populate('cart.items.courseId').execPopulate()

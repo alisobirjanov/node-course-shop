@@ -20,8 +20,10 @@ block container
                             p.price= db.price
                         .card-action
                             a( href="/courses/"+db._id) Открыть курс
-                            if isAuth 
-                                a(href="/courses/"+db._id+"/edit?allow=true") 
-                                    i(class="material-icons") edit
+                            if isAuth
+                                    a(href="/courses/"+db._id+"/edit?allow=true") 
+                                        i(class="material-icons") edit
+
     else 
-        p Poka Kursov netu
+        p Пока курсов нету
+        

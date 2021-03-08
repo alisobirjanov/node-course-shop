@@ -11,7 +11,7 @@ block container
                 p Аватара нет
         
         .col.s6     
-            form(action="/profile" method="POST" enctype="multipart/form-data")
+            form(action="/profile/user?_csrf="+ csrf  method="POST" enctype="multipart/form-data")
                 p Ваше email:   
                     strong= user.email
                 .input-field
@@ -23,6 +23,5 @@ block container
                         span Аватара 
                         input(type='file'  name='avatar')
                     .file-path-wrapper
-                        input.file-path.validate(type='text' )
-                input(type="hidden" name="_csrf" value= csrf)
+                        input.file-path.validate(type='text' value= user.avatar)
                 button(type="submit").btn.btn-primary Изменить

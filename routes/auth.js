@@ -28,6 +28,8 @@ router.post('/login', async (req, res) => {
         const {email, password} = req.body
         const candidate = await User.findOne({ email })
 
+        console.log(candidate)
+
         if(candidate){
             const areSame = await bcrypt.compareSync(password, candidate.password)
             
